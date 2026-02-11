@@ -1,2 +1,2 @@
-# Welcometo my portfolio project 
+# Welcome to my portfolio project 
 
