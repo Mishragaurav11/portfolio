@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaurav Mishra | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* THEME VARIABLES */
+:root{
+ --bg1:#020617;
+ --bg2:#0f172a;
+ --accent:#22c55e;
+ --accent2:#38bdf8;
+ --text:#ffffff;
+ --card:rgba(255,255,255,0.07);
+ --input:#020617;
+}
+
+/* LIGHT THEME */
+body.light{
+ --bg1:#f1f5f9;
+ --bg2:#e2e8f0;
+ --text:#0f172a;
+ --card:rgba(0,0,0,0.05);
+ --input:#ffffff;
+}
+
+/* RESET */
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:Poppins,sans-serif;
+}
+
+body{
+ background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg1));
+ background-size:300% 300%;
+ animation:bgMove 15s infinite linear;
+ color:var(--text);
+ transition:0.4s;
+}
+
+@keyframes bgMove{
+ 0%{background-position:0% 50%}
+ 50%{background-position:100% 50%}
+ 100%{background-position:0% 50%}
+}
+
+/* HEADER */
+header{
+ padding:20px 8%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ backdrop-filter:blur(14px);
+ position:sticky;
+ top:0;
+ z-index:100;
+}
+
+.logo{
+ font-size:24px;
+ font-weight:700;
+ background:linear-gradient(90deg,var(--accent),var(--accent2));
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+
+nav a{
+ margin-left:25px;
+ color:var(--text);
+ text-decoration:none;
+ position:relative;
+}
+
+nav a::after{
+ content:"";
+ position:absolute;
+ bottom:-6px;
+ left:0;
+ width:0;
+ height:2px;
+ background:var(--accent);
+ transition:.3s;
+}
+
+nav a:hover::after{
+ width:100%;
+}
+
+.theme-toggle{
+ background:var(--card);
+ border:none;
+ padding:8px 16px;
+ border-radius:20px;
+ cursor:pointer;
+ color:var(--text);
+}
+
+/* HERO */
+.hero{
+ min-height:90vh;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ padding:80px 8%;
+}
+
+.hero h1{
+ font-size:56px;
+ background:linear-gradient(90deg,var(--accent),var(--accent2));
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+
+.hero h2{
+ color:var(--accent2);
+ margin-top:12px;
+}
+
+.hero p{
+ margin-top:20px;
+ max-width:650px;
+ opacity:.9;
+ line-height:1.6;
+}
+
+.btn{
+ display:inline-block;
+ margin-top:35px;
+ padding:14px 28px;
+ border-radius:30px;
+ background:linear-gradient(90deg,var(--accent),var(--accent2));
+ color:black;
+ font-weight:600;
+ text-decoration:none;
+}
+
+/* SECTION */
+section{
+ padding:80px 8%;
+}
+
+.section-title{
+ font-size:34px;
+ margin-bottom:30px;
+ color:var(--accent2);
+}
+
+/* CARDS */
+.cards{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+ gap:28px;
+}
+
+.card{
+ background:var(--card);
+ padding:28px;
+ border-radius:20px;
+ backdrop-filter:blur(18px);
+ transition:.4s;
+ border:1px solid rgba(255,255,255,.06);
+}
+
+.card:hover{
+ transform:translateY(-8px);
+}
+
+/* SKILLS */
+.skill-bar{
+ background:#1e293b;
+ border-radius:20px;
+ overflow:hidden;
+ height:18px;
+ margin-top:10px;
+}
+
+.skill-fill{
+ height:100%;
+ background:linear-gradient(90deg,var(--accent),var(--accent2));
+ width:0;
+ transition:2s;
+}
+
+/* FORM */
+.form-group{
+ position:relative;
+ margin-bottom:20px;
+}
+
+input,textarea{
+ width:100%;
+ padding:14px;
+ border-radius:10px;
+ border:1px solid #334155;
+ background:var(--input);
+ color:var(--text);
+}
+
+label{
+ position:absolute;
+ left:14px;
+ top:14px;
+ color:#94a3b8;
+ transition:.3s;
+ background:var(--input);
+ padding:0 4px;
+}
+
+input:focus + label,
+input:not(:placeholder-shown)+label,
+textarea:focus + label,
+textarea:not(:placeholder-shown)+label{
+ top:-9px;
+ font-size:12px;
+ color:var(--accent);
+}
+
+footer{
+ text-align:center;
+ padding:40px;
+ opacity:.7;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">GM</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙 Theme</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<h1>Hello, I'm Gaurav Mishra</h1>
+<h2 id="typing"></h2>
+
+<p>
+Java Backend Developer with 2.9+ years experience building enterprise and government scale systems.
+Specialized in Spring Boot microservices, REST API security, PostgreSQL performance optimization and production deployments.
+</p>
+
+<a class="btn" href="/resume">Download Resume</a>
+</section>
+
+
+<section>
+<h2 class="section-title">Professional Details</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>📧 Email</h3>
+<p>
+<a href="mailto:mishragaurav844@gmail.com" style="color:var(--accent2);">
+mishragaurav844@gmail.com
+</a>
+</p>
+</div>
+
+<div class="card">
+<h3>📱 Phone</h3>
+<p style="color:var(--accent2);">+91 6387086252</p>
+</div>
+
+<div class="card">
+<h3>📍 Location</h3>
+<p>Lucknow, Uttar Pradesh, India</p>
+</div>
+
+<div class="card">
+<h3>💼 LinkedIn</h3>
+<p>
+<a href="https://www.linkedin.com/in/gaurav-mishra-java" target="_blank" style="color:var(--accent2);">
+View Profile
+</a>
+</p>
+</div>
+
+</div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<p>
+Working on enterprise government backend systems handling production level data. Strong in Spring Boot,
+database optimization, secure REST API architecture and scalable backend development.
+</p>
+</section>
+
+<!-- EXPERIENCE HIGHLIGHTS -->
+<section>
+<h2 class="section-title">Experience Highlights</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🏛 Government Systems</h3>
+<p>Working on real production government platforms handling large scale datasets.</p>
+</div>
+
+<div class="card">
+<h3>🤖 AI Integration</h3>
+<p>Integrated AI APIs reducing manual work by 40%.</p>
+</div>
+
+<div class="card">
+<h3>⚡ DB Optimization</h3>
+<p>Improved PostgreSQL query performance by 25-35%.</p>
+</div>
+
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<h2 class="section-title">Technical Skills</h2>
+
+<div class="cards">
+
+<div class="card">Java<div class="skill-bar"><div class="skill-fill" data-width="92%"></div></div></div>
+<div class="card">Spring Boot<div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div>
+<div class="card">Spring Security<div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div>
+<div class="card">PostgreSQL<div class="skill-bar"><div class="skill-fill" data-width="82%"></div></div></div>
+<div class="card">REST APIs<div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div>
+<div class="card">Docker<div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div></div>
+<div class="card">SVN<div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div></div>
+<div class="card">JUnit / Mockito<div class="skill-bar"><div class="skill-fill" data-width="78%"></div></div></div>
+
+</div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section>
+<h2 class="section-title">Achievements</h2>
+
+<div class="cards">
+<div class="card"><h2>2.9+ Years</h2><p>Backend Experience</p></div>
+<div class="card"><h2>40%</h2><p>Manual Effort Reduced</p></div>
+<div class="card"><h2>30%</h2><p>Performance Improved</p></div>
+<div class="card"><h2>Enterprise</h2><p>Production Systems</p></div>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+<h2 class="section-title">Projects</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Enterprise Government Backend</h3>
+<p>Spring Boot + PostgreSQL enterprise system.</p>
+</div>
+
+<div class="card">
+<h3>GPS Tracking Backend</h3>
+<p>Real time tracking and analytics backend APIs.</p>
+</div>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2 class="section-title">Contact Me</h2>
+
+<div th:if="${success}" style="color:#22c55e" th:text="${success}"></div>
+<div th:if="${error}" style="color:#ef4444" th:text="${error}"></div>
+
+<form th:action="@{/send-mail}" th:object="${contactForm}" method="post">
+
+<div class="form-group">
+<input type="text" th:field="*{name}" placeholder=" " required>
+<label>Name</label>
+</div>
+
+<div class="form-group">
+<input type="email" th:field="*{email}" placeholder=" " required>
+<label>Email</label>
+</div>
+
+<div class="form-group">
+<input type="text" th:field="*{subject}" placeholder=" " required>
+<label>Subject</label>
+</div>
+
+<div class="form-group">
+<textarea th:field="*{message}" placeholder=" " required></textarea>
+<label>Message</label>
+</div>
+
+<input type="text" th:field="*{company}" style="display:none">
+
+<button class="btn">Send Message</button>
+
+</form>
+
+</section>
+
+
+<footer>
+© 2026 Gaurav Mishra | Java Backend Developer  
+<br>
+📧 mishragaurav844@gmail.com | 📱 +91 6387086252
+</footer>
+
+<script>
+
+/* Typing Animation */
+const text=["Java Backend Developer","Spring Boot Specialist","REST API Developer","AWS Learner"];
+let count=0,index=0,current='',letter='';
+(function type(){
+ if(count===text.length)count=0;
+ current=text[count];
+ letter=current.slice(0,++index);
+ document.getElementById('typing').textContent=letter;
+ if(letter.length===current.length){count++;index=0;setTimeout(type,1000);}
+ else setTimeout(type,60);
+})();
+
+
+// On page load: apply saved theme save in localstoagre of client theme
+document.addEventListener('DOMContentLoaded', () => {
+    const theme = localStorage.getItem('theme') || 'dark';
+    if(theme === 'light') document.body.classList.add('light');
+});
+
+
+// Theme toggle button
+function toggleTheme() {
+    document.body.classList.toggle('light');
+    // Save preference
+    if(document.body.classList.contains('light')){
+        localStorage.setItem('theme', 'light');
+    } else {
+        localStorage.setItem('theme', 'dark');
+    }
+}
+/*
+ Theme Toggle 
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}*/
+
+/* Skills Animation */
+const skills=document.querySelectorAll('.skill-fill');
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.style.width=entry.target.dataset.width;
+  }
+ });
+});
+skills.forEach(skill=>observer.observe(skill));
+
+</script>
+
+</body>
+</html>
